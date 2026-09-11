@@ -17,3 +17,19 @@ const averageAmount = (list)=>{
 console.log('清洗后的数据：', cleanRecords(records));
 console.log('总消费金额：', totalAmount(cleanRecords(records)));
 console.log('平均单笔消费：', averageAmount(cleanRecords(records)));
+
+
+const formatReport = (list) => {
+	const valid = cleanRecords(list);
+	if (valid.length === 0){
+	return'没有消费记录';
+}
+	const total = totalAmount(valid);
+	const avg = averageAmount(valid);
+	return `有效消费记录 ${valid.length}笔; 总消费: ${total} 元; 平均单笔: ${avg} 元。` ;
+};
+try{
+	console.log(formatReport(records));
+}catch(err){
+	console.error('生成报告时发生错误：', err.message);
+}
